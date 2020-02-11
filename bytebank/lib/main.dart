@@ -14,6 +14,10 @@ class BytebankApp extends StatelessWidget {
 }
 
 class FormularioTransferencia extends StatelessWidget {
+
+  final TextEditingController _controladorCampoNumeroConta = TextEditingController();
+  final TextEditingController _controladorCampoValor = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,6 +27,7 @@ class FormularioTransferencia extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: TextField(
+                controller: _controladorCampoNumeroConta,
                 style: TextStyle(
                   fontSize: 24.0
                 ),
@@ -36,6 +41,7 @@ class FormularioTransferencia extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: TextField(
+                controller: _controladorCampoValor,
                 style: TextStyle(
                   fontSize: 24.0
                 ),
@@ -48,6 +54,15 @@ class FormularioTransferencia extends StatelessWidget {
               ),
             ),
             RaisedButton(
+              onPressed: () {
+                debugPrint('clicou no confirmar');
+                final int numeroConta = int.tryParse(_controladorCampoNumeroConta.text);
+                final double valor = double.tryParse(_controladorCampoValor.text);
+                if(numeroConta != null && valor != null) {
+                  final transferenciaCriada = Transferencia(valor, numeroConta);
+                  debugPrint('$transferenciaCriada');
+                }
+              },
               child: Text('Confirmar'),
             )
           ],
@@ -99,6 +114,11 @@ class Transferencia {
   final int numeroConta;
 
   Transferencia(this.valor, this.numeroConta);
+
+  @override
+  String toString() {
+    return 'Transferencia{valor: $valor, numeroConta: $numeroConta}';
+  }
 
 
 }
