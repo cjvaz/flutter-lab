@@ -1,4 +1,4 @@
-package com.example.bytebank
+package com.cjvaz.bytebank
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity
