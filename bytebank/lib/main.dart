@@ -13,7 +13,15 @@ class BytebankApp extends StatelessWidget {
   }
 }
 
-class FormularioTransferencia extends StatelessWidget {
+class FormularioTransferencia extends StatefulWidget {
+
+  @override
+  State<StatefulWidget> createState() {
+    return FormularioTransferenciaState();
+  }
+}
+
+class FormularioTransferenciaState extends State<FormularioTransferencia> {
 
   final TextEditingController _controladorCampoNumeroConta = TextEditingController();
   final TextEditingController _controladorCampoValor = TextEditingController();
@@ -21,7 +29,7 @@ class FormularioTransferencia extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Criando Transferência')),
+        appBar: AppBar(title: Text('Criando Transferência')),
         body: SingleChildScrollView(
           child: Column(
             children: <Widget>[
@@ -37,7 +45,7 @@ class FormularioTransferencia extends StatelessWidget {
   }
 
   void _criaTransferencia(BuildContext context) {
-     final int numeroConta = int.tryParse(_controladorCampoNumeroConta.text);
+    final int numeroConta = int.tryParse(_controladorCampoNumeroConta.text);
     final double valor = double.tryParse(_controladorCampoValor.text);
     if(numeroConta != null && valor != null) {
       final transferenciaCriada = Transferencia(valor, numeroConta);
@@ -46,6 +54,7 @@ class FormularioTransferencia extends StatelessWidget {
       Navigator.pop(context, transferenciaCriada);
     }
   }
+
 }
 
 class Editor extends StatelessWidget {
