@@ -117,11 +117,13 @@ class ListaTransferenciasState extends State<ListaTransferencias>{
           return FormularioTransferencia();
         }));
         future.then((transferenciaRecebida) {
-          debugPrint('Chegou no then do future');
-          debugPrint('$transferenciaRecebida');
-          if(transferenciaRecebida != null) {
-            widget._transferencias.add(transferenciaRecebida);
-          }
+          Future.delayed(Duration(seconds: 2), () {
+            debugPrint('Chegou no then do future');
+            debugPrint('$transferenciaRecebida');
+            if(transferenciaRecebida != null) {
+              widget._transferencias.add(transferenciaRecebida);
+            }
+          });
         });
       },
       ),
